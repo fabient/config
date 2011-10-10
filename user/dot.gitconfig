@@ -1,0 +1,12 @@
+[user]
+	name = NAME
+	email = EMAIL
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+[core]
+	editor = joe
+	pager = most
+[color]
+	ui = auto

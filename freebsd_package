@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+
+pkg_add -r bsdadminscripts ssmtp sudo most tmux jupp pv subversion-freebsd git
