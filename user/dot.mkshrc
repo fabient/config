@@ -7,11 +7,10 @@ if [ $? -eq 0 ]; then
                 tmux attach
         fi
 else
-	sleep 4
         tmux new
 fi
 
-: ${EDITOR:=/usr/local/bin/joe} ${TERM:=vt100} ${HOSTNAME:=$(ulimit -c 0;hostname -s 2>&-)}
+: ${TERM:=vt100} ${HOSTNAME:=$(ulimit -c 0;hostname -s 2>&-)}
 [[ $HOSTNAME = @(localhost|*([	 ])) ]] && HOSTNAME=$(ulimit -c 0;hostname 2>&-)
 : ${HOSTNAME:=nil}; if (( USER_ID )); then PS1='$'; else PS1='#'; fi
 function precmd {
@@ -23,15 +22,17 @@ PS1='$(precmd)${USER:=$(ulimit -c 0;id -un 2>&-||print \?)}@${HOSTNAME%%.*}:$(
 	local d=${PWD:-?} n p=~; [[ $p = ?(*/) ]] || d=${d/#$p/~}
 	(( (${%d}>0 ? ${%d}: ${#d}) > (n = (COLUMNS/3<7 ? 7: COLUMNS/3)) )) && {
 	d=${d:(-n)}; p=...; } || p=; print -nr -- "$p$d") '"$PS1 "
-: ${MKSH:=$(whence -p mksh)}; export EDITOR HOSTNAME MKSH TERM USER
-: ${CLICOLOR:=YES}; export CLICOLOR
-: ${LSCOLORS:=ExGxFxdxCxDxDxhbadExEx}; export LSCOLORS
-: ${GREP_COLOR:=01;32}; export GREP_COLOR
-: ${PAGER:=most}; export MOST
-: ${DISPLAY=:0.0}; export DISPLAY
-: ${HISTFILE:=~/.mksh_history}; export HISTFILE
-: ${HISTSIZE:=50000}; export HISTSIZE
-: ${PACKAGEROOT:=http://ftp.fr.freebsd.org}; export PACKAGEROOT
+: ${MKSH:=$(whence -p mksh)}; export HOSTNAME MKSH TERM USER
+: ${DISPLAY:=:0.0}; export DISPLAY
+
+CLICOLOR=YES; export CLICOLOR
+LSCOLORS="ExGxFxdxCxDxDxhbadExEx"; export LSCOLORS
+GREP_COLOR="01;32"; export GREP_COLOR
+EDITOR="/usr/local/bin/joe"; export EDITOR
+PAGER=most; export MOST
+HISTFILE="~/.mksh_history"; export HISTFILE
+HISTSIZE=50000; export HISTSIZE
+PACKAGEROOT="http://ftp.fr.freebsd.org"; export PACKAGEROOT
 
 alias ls=ls
 unalias ls
