@@ -1,0 +1,2 @@
+. ~/.bashrc
+export ENV=~/.bashrc
