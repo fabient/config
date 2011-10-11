@@ -620,19 +620,19 @@ define reg
     echo \033[32m
     printf "DS:"
     echo \033[0m
-    printf " %04X  ", $ds
+    printf " %04X  ", 0
     echo \033[32m
     printf "ES:"
     echo \033[0m
-    printf " %04X  ", $es
+    printf " %04X  ", 0
     echo \033[32m
     printf "FS:"
     echo \033[0m
-    printf " %04X  ", $fs
+    printf " %04X  ", 0
     echo \033[32m
     printf "GS:"
     echo \033[0m
-    printf " %04X  ", $gs
+    printf " %04X  ", 0
     echo \033[32m
     printf "SS:"
     echo \033[0m
